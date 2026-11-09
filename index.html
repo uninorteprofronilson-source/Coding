@@ -1,1744 +1,691 @@
 
+
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-Revisão Acadêmica - Professor Msc Ronilson Silva
-</title>
+<title>Atividade Extra – Coding 09/11 | Prof. MSc. Ronilson Silva</title>
 
 <style>
-
-/* =====================================================
-   CONFIGURAÇÃO GERAL 
-===================================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html,
-body{
-    width:100%;
-    height:100%;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#111;
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111;
 }
 
-
-/* =====================================================
-   TELA INICIAL
-===================================================== */
-
-#inicio{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #000000,
-            #202020
-        );
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    z-index:1000;
-
-    padding:20px;
+#inicio, #encerrada, #finalizada {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #000, #202020);
 }
 
+#inicio { z-index: 1000; }
 
-.card-inicio{
-
-    width:100%;
-    max-width:680px;
-
-    background:#ffffff;
-
-    color:#222;
-
-    border-radius:18px;
-
-    padding:40px;
-
-    box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.65);
-
-    text-align:center;
+.card-inicio, .caixa-resultado {
+    width: 100%;
+    max-width: 680px;
+    background: white;
+    color: #222;
+    padding: 35px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 20px 70px rgba(0,0,0,.65);
 }
 
-
-.icone-inicio{
-
-    font-size:60px;
-
-    margin-bottom:15px;
+.icone-inicio {
+    font-size: 60px;
+    margin-bottom: 15px;
 }
 
-
-.card-inicio h1{
-
-    font-size:29px;
-
-    margin-bottom:10px;
+h1 {
+    font-size: 27px;
+    margin-bottom: 14px;
 }
 
-
-.professor{
-
-    color:#31b279;
-
-    font-size:19px;
-
-    font-weight:bold;
-
-    margin-bottom:25px;
+.professor {
+    color: #269764;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 22px;
 }
 
-
-/* =====================================================
-   AVISO
-===================================================== */
-
-.aviso{
-
-    background:#fff3cd;
-
-    border:1px solid #ffe69c;
-
-    color:#664d03;
-
-    padding:18px;
-
-    border-radius:10px;
-
-    text-align:left;
-
-    line-height:1.6;
-
-    margin-bottom:25px;
+.aviso {
+    background: #fff3cd;
+    border: 1px solid #ffe69c;
+    color: #664d03;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: left;
+    line-height: 1.7;
+    margin-bottom: 25px;
 }
 
-
-.aviso strong{
-    font-weight:bold;
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 9px;
+    font-weight: bold;
 }
 
-
-/* =====================================================
-   BOTÃO INICIAR
-===================================================== */
-
-#btnIniciar{
-
-    width:100%;
-
-    padding:17px;
-
-    background:#31b279;
-
-    color:#fff;
-
-    border:none;
-
-    border-radius:10px;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.2s;
+#btnIniciar {
+    width: 100%;
+    padding: 17px;
+    background: #31b279;
+    color: white;
+    font-size: 17px;
 }
 
-
-#btnIniciar:hover{
-
-    background:#269764;
-
-    transform:scale(1.01);
+#btnIniciar:hover {
+    background: #269764;
 }
 
-
-/* =====================================================
-   TELA DA AVALIAÇÃO
-===================================================== */
-
-#avaliacao{
-
-    display:none;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:#f2f2f2;
+#avaliacao {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #f2f2f2;
 }
 
-
-/* =====================================================
-   CABEÇALHO
-===================================================== */
-
-.topo{
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-
-    height:65px;
-
-    background:#000;
-
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 20px;
-
-    z-index:100;
+.topo {
+    height: 65px;
+    background: #000;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 12px;
 }
 
-
-.titulo{
-
-    color:#31b279;
-
-    font-size:18px;
-
-    font-weight:bold;
+.titulo {
+    color: #31b279;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-
-.status{
-
-    color:#fff;
-
-    font-size:13px;
-
-    margin-right:10px;
+.botoes-topo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-
-.botoes-topo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
+.status {
+    font-size: 13px;
+    margin-right: 10px;
 }
 
-
-.btn{
-
-    border:none;
-
-    border-radius:7px;
-
-    padding:10px 14px;
-
-    font-weight:bold;
-
-    cursor:pointer;
+.btn {
+    padding: 10px 14px;
+    color: white;
 }
 
+#btnTelaCheia { background: #444; }
+#btnFinalizar { background: #c62828; }
 
-#btnTelaCheia{
-
-    background:#444;
-
-    color:#fff;
+.area-formulario {
+    position: absolute;
+    top: 65px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
 }
 
-
-#btnFinalizar{
-
-    background:#c62828;
-
-    color:#fff;
+#googleForm {
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
-
-/* =====================================================
-   GOOGLE FORMS
-===================================================== */
-
-.area-formulario{
-
-    position:absolute;
-
-    top:65px;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    background:#fff;
+#modalSaida {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.88);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-
-#googleForm{
-
-    width:100%;
-    height:100%;
-
-    border:none;
-
-    display:block;
+.modal {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    color: #222;
+    border-radius: 18px;
+    padding: 35px;
+    text-align: center;
 }
 
-
-/* =====================================================
-   MODAL DE SAÍDA
-===================================================== */
-
-#modalSaida{
-
-    display:none;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:
-        rgba(0,0,0,.88);
-
-    z-index:99999;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:20px;
+.modal-icone {
+    font-size: 65px;
+    margin-bottom: 15px;
 }
 
-
-.modal{
-
-    width:100%;
-
-    max-width:520px;
-
-    background:#fff;
-
-    color:#222;
-
-    border-radius:18px;
-
-    padding:35px;
-
-    text-align:center;
-
-    box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.8);
+.modal h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
 }
 
-
-.modal-icone{
-
-    font-size:65px;
-
-    margin-bottom:15px;
+.modal p, .caixa-resultado p {
+    line-height: 1.7;
+    margin-bottom: 20px;
 }
 
-
-.modal h2{
-
-    font-size:25px;
-
-    margin-bottom:15px;
+.botoes-modal {
+    display: flex;
+    gap: 10px;
 }
 
-
-.modal p{
-
-    line-height:1.6;
-
-    margin-bottom:25px;
+#btnContinuar, #btnEncerrar {
+    flex: 1;
+    padding: 15px;
+    color: white;
 }
 
+#btnContinuar { background: #31b279; }
+#btnEncerrar { background: #c62828; }
 
-.botoes-modal{
-
-    display:flex;
-
-    gap:10px;
+#encerrada, #finalizada {
+    display: none;
+    z-index: 100000;
 }
 
-
-#btnContinuar{
-
-    flex:1;
-
-    background:#31b279;
-
-    color:#fff;
-
-    border:none;
-
-    padding:15px;
-
-    border-radius:9px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-}
-
-
-#btnEncerrar{
-
-    flex:1;
-
-    background:#c62828;
-
-    color:#fff;
-
-    border:none;
-
-    padding:15px;
-
-    border-radius:9px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-}
-
-
-/* =====================================================
-   TELA ENCERRADA
-===================================================== */
-
-#encerrada{
-
-    display:none;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:#111;
-
-    color:#fff;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    z-index:100000;
-
-    padding:20px;
-}
-
-
-.caixa-encerrada{
-
-    width:100%;
-
-    max-width:550px;
-
-    background:#fff;
-
-    color:#222;
-
-    padding:40px;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.7);
-}
-
-
-.icone-encerrada{
-
-    font-size:65px;
-
-    margin-bottom:15px;
-}
-
-
-.caixa-encerrada h1{
-
-    color:#c62828;
-
-    margin-bottom:15px;
-}
-
-
-.caixa-encerrada p{
-
-    line-height:1.6;
-}
-
-
-/* =====================================================
-   TELA FINALIZADA
-===================================================== */
-
-#finalizada{
-
-    display:none;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:#111;
-
-    color:#fff;
-
-    align-items:center;
-
-    justify-content:center;
-
-    text-align:center;
-
-    z-index:100000;
-
-    padding:20px;
-}
-
-
-.caixa-finalizada{
-
-    width:100%;
-
-    max-width:550px;
-
-    background:#fff;
-
-    color:#222;
-
-    padding:40px;
-
-    border-radius:18px;
-}
-
-
-.caixa-finalizada h1{
-
-    color:#31b279;
-
-    margin-bottom:15px;
-}
-
-
-.caixa-finalizada p{
-
-    line-height:1.6;
-}
-
-
-/* =====================================================
-   RESPONSIVO
-===================================================== */
-
-@media(max-width:700px){
-
-    .topo{
-
-        height:100px;
-
-        flex-direction:column;
-
-        justify-content:center;
-
-        gap:5px;
+#encerrada h1 { color: #c62828; }
+#finalizada h1 { color: #31b279; }
+
+@media (max-width: 700px) {
+    .topo {
+        height: 100px;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
     }
 
-
-    .area-formulario{
-
-        top:100px;
-    }
-
-
-    .titulo{
-
-        font-size:15px;
-    }
-
-
-    .status{
-
-        display:none;
-    }
-
-
-    .card-inicio{
-
-        padding:25px;
-    }
-
-
-    .modal{
-
-        padding:25px;
-    }
-
-
-    .botoes-modal{
-
-        flex-direction:column;
-    }
-
+    .area-formulario { top: 100px; }
+    .titulo { font-size: 15px; }
+    .status { display: none; }
+    .card-inicio, .modal { padding: 25px; }
+    .botoes-modal { flex-direction: column; }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     TELA INICIAL
-===================================================== -->
-
+<!-- TELA INICIAL -->
 <div id="inicio">
-
     <div class="card-inicio">
 
-        <div class="icone-inicio">
-            📝
-        </div>
+        <div class="icone-inicio">📝</div>
 
-        <h1>
-            Revisão Acadêmica
-        </h1>
+        <h1>Atividade Extra – Coding 09/11</h1>
 
         <div class="professor">
-            Professor Msc Ronilson Silva
+            Professor MSc. Ronilson Silva
         </div>
 
         <div class="aviso">
+            <strong>⚠️ ATENÇÃO</strong>
+            <br><br>
 
-            <strong>
-                ⚠️ ATENÇÃO
-            </strong>
+            Esta atividade corresponde à
+            <strong>Atividade Extra – Coding 09/11</strong>.
 
             <br><br>
 
-            Ao clicar em
-            <strong>
-                INICIAR Revisão
-            </strong>,
-            você entrará no ambiente da Revisão.
+            Ao clicar em <strong>INICIAR ATIVIDADE</strong>,
+            você entrará no ambiente da atividade.
 
             <br><br>
 
-            Durante a Revisão:
-
+            <strong>Durante a atividade:</strong>
             <br><br>
 
             • Não copie conteúdo.<br>
-
             • Não cole respostas.<br>
-
             • Não utilize Ctrl+C ou Ctrl+V.<br>
-
             • Não utilize o botão direito.<br>
-
             • Não troque de aba.<br>
-
             • Não saia da página.<br>
-
             • Não utilize o botão voltar.
 
             <br><br>
 
             <strong>
-                Caso tente sair da Revisão,
+                Caso tente sair da atividade,
                 será apresentada uma confirmação.
             </strong>
-
         </div>
 
-
         <button id="btnIniciar">
-
-            ▶ INICIAR Revisão
-
+            ▶ INICIAR ATIVIDADE EXTRA
         </button>
 
     </div>
-
 </div>
 
-
-
-<!-- =====================================================
-     TELA DA AVALIAÇÃO
-===================================================== -->
-
+<!-- TELA DA ATIVIDADE -->
 <div id="avaliacao">
 
     <header class="topo">
 
         <div class="titulo">
-
-            📚 Revisão — Professor Msc Ronilson Silva
-
+            📚 Atividade Extra – Coding 09/11
+            | Prof. MSc. Ronilson Silva
         </div>
-
 
         <div class="botoes-topo">
 
             <span class="status">
-
-                ● Revisão em andamento
-
+                ● Atividade em andamento
             </span>
 
-
-            <button
-                class="btn"
-                id="btnTelaCheia">
-
+            <button class="btn" id="btnTelaCheia">
                 ⛶ Tela Cheia
-
             </button>
 
-
-            <button
-                class="btn"
-                id="btnFinalizar">
-
+            <button class="btn" id="btnFinalizar">
                 ✓ Finalizar
-
             </button>
 
         </div>
-
     </header>
 
-
-
     <div class="area-formulario">
-
         <iframe
-
             id="googleForm"
-
-            title="Revisão Google Forms"
-
-            allow="fullscreen"
-
-        ></iframe>
-
+            title="Atividade Extra – Coding 09/11"
+            allow="fullscreen">
+        </iframe>
     </div>
 
 </div>
 
-
-
-<!-- =====================================================
-     MODAL DE SAÍDA
-===================================================== -->
-
+<!-- MODAL DE SAÍDA -->
 <div id="modalSaida">
-
     <div class="modal">
 
-        <div class="modal-icone">
-            ⚠️
-        </div>
+        <div class="modal-icone">⚠️</div>
 
-        <h2>
-            Deseja sair da Revisão?
-        </h2>
+        <h2>Deseja sair da atividade?</h2>
 
         <p>
-
-            O sistema detectou uma tentativa
-            de saída da Revisão.
-
+            O sistema detectou uma tentativa de saída
+            da Atividade Extra – Coding 09/11.
             <br><br>
 
-            Se você confirmar a saída,
-            <strong>
-                a sessão da Revisão será encerrada.
-            </strong>
-
+            Se confirmar a saída,
+            <strong>a sessão será encerrada.</strong>
             <br><br>
 
             Deseja realmente sair?
-
         </p>
-
 
         <div class="botoes-modal">
 
             <button id="btnContinuar">
-
                 NÃO — CONTINUAR
-
             </button>
-
 
             <button id="btnEncerrar">
-
                 SIM — ENCERRAR
-
             </button>
 
         </div>
-
     </div>
-
 </div>
 
-
-
-<!-- =====================================================
-     AVALIAÇÃO ENCERRADA
-===================================================== -->
-
+<!-- TELA ENCERRADA -->
 <div id="encerrada">
+    <div class="caixa-resultado">
 
-    <div class="caixa-encerrada">
+        <div class="icone-inicio">🔒</div>
 
-        <div class="icone-encerrada">
-            🔒
-        </div>
-
-        <h1>
-            Revisão ENCERRADA
-        </h1>
+        <h1>ATIVIDADE EXTRA ENCERRADA</h1>
 
         <p>
-
-            A sessão da Revisão foi encerrada.
-
+            A sessão da Atividade Extra – Coding 09/11
+            foi encerrada.
             <br><br>
 
             A tentativa de saída foi registrada
-            pelo sistema.
-
+            neste navegador.
             <br><br>
 
-            Procure o professor responsável
-            caso tenha ocorrido algum problema.
-
+            Procure o professor responsável caso
+            tenha ocorrido algum problema.
         </p>
 
     </div>
-
 </div>
 
-
-
-<!-- =====================================================
-     AVALIAÇÃO FINALIZADA
-===================================================== -->
-
+<!-- TELA FINALIZADA -->
 <div id="finalizada">
+    <div class="caixa-resultado">
 
-    <div class="caixa-finalizada">
+        <div class="icone-inicio">✅</div>
 
-        <div class="icone-encerrada">
-            ✅
-        </div>
-
-        <h1>
-            Revisão FINALIZADA
-        </h1>
+        <h1>ATIVIDADE EXTRA FINALIZADA</h1>
 
         <p>
-
-            A Revisão foi finalizada.
-
+            A Atividade Extra – Coding 09/11
+            foi finalizada.
             <br><br>
 
-            Obrigado.
-
+            Obrigado pela participação!
         </p>
 
     </div>
-
 </div>
-
-
 
 <script>
 
-/* =====================================================
-   NOVO LINK DO GOOGLE FORMS
-===================================================== */
+/* CONFIGURAÇÃO DO GOOGLE FORMS */
 
 const LINK_GOOGLE_FORMS =
-"https://forms.gle/xiLUrWqgp9L8GBFF6";
+    "https://forms.gle/xiLUrWqgp9L8GBFF6";
 
+/* VARIÁVEIS */
 
-/* =====================================================
-   VARIÁVEIS
-===================================================== */
-
-let avaliacaoIniciada = false;
-
-let avaliacaoEncerrada = false;
-
+let atividadeIniciada = false;
+let atividadeEncerrada = false;
 let permitirSaida = false;
 
+/* ELEMENTOS */
 
-/* =====================================================
-   ELEMENTOS
-===================================================== */
+const inicio = document.getElementById("inicio");
+const avaliacao = document.getElementById("avaliacao");
+const googleForm = document.getElementById("googleForm");
+const modalSaida = document.getElementById("modalSaida");
+const encerrada = document.getElementById("encerrada");
+const finalizada = document.getElementById("finalizada");
 
-const inicio =
-document.getElementById("inicio");
+/* TELA CHEIA */
 
-const avaliacao =
-document.getElementById("avaliacao");
+function entrarTelaCheia() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement
+            .requestFullscreen()
+            .catch(() => {});
+    }
+}
 
-const googleForm =
-document.getElementById("googleForm");
+/* INICIAR ATIVIDADE */
 
-const modalSaida =
-document.getElementById("modalSaida");
+document.getElementById("btnIniciar")
+    .addEventListener("click", function() {
 
-const encerrada =
-document.getElementById("encerrada");
-
-const finalizada =
-document.getElementById("finalizada");
-
-
-/* =====================================================
-   INICIAR AVALIAÇÃO
-===================================================== */
-
-document
-.getElementById("btnIniciar")
-.addEventListener(
-    "click",
-    function(){
-
-        avaliacaoIniciada = true;
-
-        avaliacaoEncerrada = false;
-
+        atividadeIniciada = true;
+        atividadeEncerrada = false;
         permitirSaida = false;
 
+        inicio.style.display = "none";
+        avaliacao.style.display = "block";
 
-        inicio.style.display =
-        "none";
+        googleForm.src = LINK_GOOGLE_FORMS;
 
-
-        avaliacao.style.display =
-        "block";
-
-
-        googleForm.src =
-        LINK_GOOGLE_FORMS;
-
-
-        registrarEvento(
-            "INICIO_AVALIACAO"
-        );
-
+        registrarEvento("INICIO_ATIVIDADE");
 
         entrarTelaCheia();
+    });
 
-    }
-);
+/* BOTÃO TELA CHEIA */
 
-
-/* =====================================================
-   TELA CHEIA
-===================================================== */
-
-function entrarTelaCheia(){
-
-    if(
-        document.documentElement.requestFullscreen
-    ){
-
-        document
-        .documentElement
-        .requestFullscreen()
-        .catch(
-            function(){}
-        );
-
-    }
-
-}
-
-
-document
-.getElementById("btnTelaCheia")
-.addEventListener(
-    "click",
-    function(){
-
-        if(avaliacaoIniciada){
-
+document.getElementById("btnTelaCheia")
+    .addEventListener("click", function() {
+        if (atividadeIniciada) {
             entrarTelaCheia();
-
         }
+    });
 
+/* DETECTAR SAÍDA DE TELA CHEIA */
+
+document.addEventListener("fullscreenchange", function() {
+
+    if (
+        atividadeIniciada &&
+        !document.fullscreenElement &&
+        !permitirSaida
+    ) {
+        registrarEvento("SAIDA_TELA_CHEIA");
+        mostrarModal();
     }
-);
+});
 
+/* DETECTAR TROCA DE ABA */
 
-/* =====================================================
-   DETECTAR SAÍDA DA TELA CHEIA
-===================================================== */
+document.addEventListener("visibilitychange", function() {
 
-document.addEventListener(
-    "fullscreenchange",
-    function(){
-
-        if(
-
-            avaliacaoIniciada &&
-
-            !document.fullscreenElement &&
-
-            !permitirSaida
-
-        ){
-
-            registrarEvento(
-                "SAIDA_TELA_CHEIA"
-            );
-
-
-            mostrarModal();
-
-        }
-
+    if (
+        atividadeIniciada &&
+        document.hidden &&
+        !permitirSaida
+    ) {
+        registrarEvento("TROCA_DE_ABA");
+        mostrarModal();
     }
-);
+});
 
+/* DETECTAR PERDA DE FOCO */
 
-/* =====================================================
-   DETECTAR TROCA DE ABA
-===================================================== */
+window.addEventListener("blur", function() {
 
-document.addEventListener(
-    "visibilitychange",
-    function(){
-
-        if(
-
-            avaliacaoIniciada &&
-
-            document.hidden &&
-
-            !permitirSaida
-
-        ){
-
-            registrarEvento(
-                "TROCA_DE_ABA"
-            );
-
-
-            mostrarModal();
-
-        }
-
+    if (atividadeIniciada && !permitirSaida) {
+        registrarEvento("PERDA_DE_FOCO");
     }
-);
+});
 
+/* BLOQUEAR CÓPIA, COLAGEM E RECORTE */
 
-/* =====================================================
-   PERDA DE FOCO
-===================================================== */
+["copy", "paste", "cut"].forEach(tipo => {
 
-window.addEventListener(
-    "blur",
-    function(){
+    document.addEventListener(tipo, function(event) {
 
-        if(
-
-            avaliacaoIniciada &&
-
-            !permitirSaida
-
-        ){
-
-            registrarEvento(
-                "PERDA_DE_FOCO"
-            );
-
+        if (atividadeIniciada) {
+            event.preventDefault();
+            registrarEvento("TENTATIVA_" + tipo.toUpperCase());
         }
+    });
+});
 
+/* BLOQUEAR BOTÃO DIREITO */
+
+document.addEventListener("contextmenu", function(event) {
+
+    if (atividadeIniciada) {
+        event.preventDefault();
+        registrarEvento("BOTAO_DIREITO");
     }
-);
+});
 
+/* BLOQUEAR ATALHOS */
 
-/* =====================================================
-   BLOQUEAR COPIAR
-===================================================== */
+document.addEventListener("keydown", function(event) {
 
-document.addEventListener(
-    "copy",
-    function(event){
+    if (!atividadeIniciada) return;
 
-        if(avaliacaoIniciada){
+    const tecla = event.key.toLowerCase();
 
-            event.preventDefault();
+    const atalhos = ["c", "v", "x", "a", "u", "s", "p"];
 
-            registrarEvento(
-                "TENTATIVA_COPIAR"
-            );
+    if (event.ctrlKey && atalhos.includes(tecla)) {
 
-        }
-
-    }
-);
-
-
-/* =====================================================
-   BLOQUEAR COLAR
-===================================================== */
-
-document.addEventListener(
-    "paste",
-    function(event){
-
-        if(avaliacaoIniciada){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "TENTATIVA_COLAR"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   BLOQUEAR RECORTAR
-===================================================== */
-
-document.addEventListener(
-    "cut",
-    function(event){
-
-        if(avaliacaoIniciada){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "TENTATIVA_RECORTAR"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   BLOQUEAR BOTÃO DIREITO
-===================================================== */
-
-document.addEventListener(
-    "contextmenu",
-    function(event){
-
-        if(avaliacaoIniciada){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "BOTAO_DIREITO"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   BLOQUEAR ATALHOS
-===================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(!avaliacaoIniciada){
-
-            return;
-
-        }
-
-
-        const tecla =
-        event.key.toLowerCase();
-
-
-        /* CTRL+C */
-
-        if(
-            event.ctrlKey &&
-            tecla === "c"
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "CTRL_C"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+V */
-
-        if(
-            event.ctrlKey &&
-            tecla === "v"
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "CTRL_V"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+X */
-
-        if(
-            event.ctrlKey &&
-            tecla === "x"
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "CTRL_X"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+A */
-
-        if(
-            event.ctrlKey &&
-            tecla === "a"
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "CTRL_A"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+U */
-
-        if(
-            event.ctrlKey &&
-            tecla === "u"
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "CTRL_U"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+S */
-
-        if(
-            event.ctrlKey &&
-            tecla === "s"
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "CTRL_S"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+P */
-
-        if(
-            event.ctrlKey &&
-            tecla === "p"
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "CTRL_P"
-            );
-
-            return;
-
-        }
-
-
-        /* F12 */
-
-        if(
-            event.key === "F12"
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "F12"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+SHIFT+I */
-
-        if(
-
-            event.ctrlKey &&
-            event.shiftKey &&
-            tecla === "i"
-
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "DEVTOOLS"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+SHIFT+J */
-
-        if(
-
-            event.ctrlKey &&
-            event.shiftKey &&
-            tecla === "j"
-
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "CONSOLE"
-            );
-
-            return;
-
-        }
-
-
-        /* CTRL+SHIFT+C */
-
-        if(
-
-            event.ctrlKey &&
-            event.shiftKey &&
-            tecla === "c"
-
-        ){
-
-            event.preventDefault();
-
-            registrarEvento(
-                "INSPECTOR"
-            );
-
-            return;
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   BOTÃO VOLTAR
-===================================================== */
-
-history.pushState(
-    null,
-    "",
-    location.href
-);
-
-
-window.addEventListener(
-    "popstate",
-    function(){
-
-        if(avaliacaoIniciada){
-
-            registrarEvento(
-                "BOTAO_VOLTAR"
-            );
-
-
-            history.pushState(
-                null,
-                "",
-                location.href
-            );
-
-
-            mostrarModal();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   FECHAR / RECARREGAR
-===================================================== */
-
-window.addEventListener(
-    "beforeunload",
-    function(event){
-
-        if(
-
-            avaliacaoIniciada &&
-
-            !permitirSaida
-
-        ){
-
-            registrarEvento(
-                "FECHAR_OU_RECARREGAR"
-            );
-
-
-            event.preventDefault();
-
-            event.returnValue = "";
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   MOSTRAR MODAL
-===================================================== */
-
-function mostrarModal(){
-
-    if(avaliacaoEncerrada){
-
+        event.preventDefault();
+        registrarEvento("CTRL_" + tecla.toUpperCase());
         return;
-
     }
 
+    if (event.key === "F12") {
 
-    modalSaida.style.display =
-    "flex";
+        event.preventDefault();
+        registrarEvento("F12");
+        return;
+    }
 
+    if (
+        event.ctrlKey &&
+        event.shiftKey &&
+        ["i", "j", "c"].includes(tecla)
+    ) {
+        event.preventDefault();
+        registrarEvento("ATALHO_DEVTOOLS");
+    }
+});
+
+/* DETECTAR BOTÃO VOLTAR */
+
+history.pushState(null, "", location.href);
+
+window.addEventListener("popstate", function() {
+
+    if (atividadeIniciada) {
+
+        registrarEvento("BOTAO_VOLTAR");
+
+        history.pushState(null, "", location.href);
+
+        mostrarModal();
+    }
+});
+
+/* DETECTAR FECHAMENTO OU RECARREGAMENTO */
+
+window.addEventListener("beforeunload", function(event) {
+
+    if (atividadeIniciada && !permitirSaida) {
+
+        registrarEvento("FECHAR_OU_RECARREGAR");
+
+        event.preventDefault();
+        event.returnValue = "";
+    }
+});
+
+/* MOSTRAR MODAL */
+
+function mostrarModal() {
+
+    if (atividadeEncerrada) return;
+
+    modalSaida.style.display = "flex";
 }
 
+/* CONTINUAR ATIVIDADE */
 
-/* =====================================================
-   CONTINUAR
-===================================================== */
+document.getElementById("btnContinuar")
+    .addEventListener("click", function() {
 
-document
-.getElementById("btnContinuar")
-.addEventListener(
-    "click",
-    function(){
+        modalSaida.style.display = "none";
 
-        modalSaida.style.display =
-        "none";
-
-
-        registrarEvento(
-            "CONTINUOU_AVALIACAO"
-        );
-
+        registrarEvento("CONTINUOU_ATIVIDADE");
 
         entrarTelaCheia();
+    });
 
-    }
-);
+/* ENCERRAR ATIVIDADE */
 
-
-/* =====================================================
-   ENCERRAR
-===================================================== */
-
-document
-.getElementById("btnEncerrar")
-.addEventListener(
-    "click",
-    function(){
+document.getElementById("btnEncerrar")
+    .addEventListener("click", function() {
 
         permitirSaida = true;
 
+        encerrarAtividade("SAIDA_CONFIRMADA");
+    });
 
-        encerrarAvaliacao(
-            "SAIDA_CONFIRMADA"
-        );
+function encerrarAtividade(motivo) {
 
+    if (atividadeEncerrada) return;
+
+    atividadeEncerrada = true;
+    atividadeIniciada = false;
+
+    registrarEvento(motivo);
+
+    avaliacao.style.display = "none";
+    modalSaida.style.display = "none";
+    encerrada.style.display = "flex";
+
+    googleForm.src = "about:blank";
+
+    if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
     }
-);
-
-
-/* =====================================================
-   ENCERRAR AVALIAÇÃO
-===================================================== */
-
-function encerrarAvaliacao(
-    motivo
-){
-
-    if(avaliacaoEncerrada){
-
-        return;
-
-    }
-
-
-    avaliacaoEncerrada = true;
-
-    avaliacaoIniciada = false;
-
-
-    registrarEvento(
-        motivo
-    );
-
-
-    avaliacao.style.display =
-    "none";
-
-
-    modalSaida.style.display =
-    "none";
-
-
-    encerrada.style.display =
-    "flex";
-
-
-    if(
-        document.fullscreenElement
-    ){
-
-        document
-        .exitFullscreen()
-        .catch(
-            function(){}
-        );
-
-    }
-
 }
 
+/* FINALIZAR MANUALMENTE */
 
-/* =====================================================
-   FINALIZAR MANUALMENTE
-===================================================== */
+document.getElementById("btnFinalizar")
+    .addEventListener("click", function() {
 
-document
-.getElementById("btnFinalizar")
-.addEventListener(
-    "click",
-    function(){
+        if (!atividadeIniciada) return;
 
-        if(!avaliacaoIniciada){
-
-            return;
-
-        }
-
-
-        const confirmar =
-        confirm(
-            "Você tem certeza que deseja finalizar a avaliação?"
+        const confirmar = confirm(
+            "Você tem certeza que deseja finalizar a Atividade Extra – Coding 09/11? Verifique se já enviou suas respostas no Google Forms."
         );
 
-
-        if(!confirmar){
-
-            return;
-
-        }
-
+        if (!confirmar) return;
 
         permitirSaida = true;
 
+        registrarEvento("FINALIZACAO_MANUAL");
 
-        registrarEvento(
-            "FINALIZACAO_MANUAL"
-        );
+        atividadeIniciada = false;
+        atividadeEncerrada = true;
 
+        avaliacao.style.display = "none";
+        finalizada.style.display = "flex";
 
-        avaliacaoIniciada = false;
+        googleForm.src = "about:blank";
 
-
-        avaliacao.style.display =
-        "none";
-
-
-        finalizada.style.display =
-        "flex";
-
-
-        if(
-            document.fullscreenElement
-        ){
-
-            document
-            .exitFullscreen()
-            .catch(
-                function(){}
-            );
-
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(() => {});
         }
+    });
 
-    }
-);
+/* REGISTRAR EVENTOS NO NAVEGADOR */
 
-
-/* =====================================================
-   REGISTRAR EVENTOS
-===================================================== */
-
-function registrarEvento(
-    tipo
-){
+function registrarEvento(tipo) {
 
     const evento = {
-
-        evento:tipo,
-
-        data:
-        new Date()
-        .toLocaleString(
-            "pt-BR"
-        )
-
+        atividade: "Atividade Extra – Coding 09/11",
+        evento: tipo,
+        data: new Date().toLocaleString("pt-BR")
     };
 
+    console.log("EVENTO DA ATIVIDADE:", evento);
 
-    console.log(
-        "EVENTO DA AVALIAÇÃO:",
-        evento
-    );
+    try {
+        let eventos = JSON.parse(
+            localStorage.getItem("eventos_atividade_extra")
+        ) || [];
 
+        eventos.push(evento);
 
-    let eventos =
-    JSON.parse(
-        localStorage.getItem(
-            "eventos_avaliacao"
-        )
-    ) || [];
+        localStorage.setItem(
+            "eventos_atividade_extra",
+            JSON.stringify(eventos)
+        );
 
-
-    eventos.push(
-        evento
-    );
-
-
-    localStorage.setItem(
-        "eventos_avaliacao",
-        JSON.stringify(
-            eventos
-        )
-    );
-
+    } catch (erro) {
+        console.warn("Não foi possível salvar o evento.", erro);
+    }
 }
 
 </script>
 
-
 </body>
-
 </html>
+
